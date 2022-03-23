@@ -11,6 +11,7 @@ interface Props {
 }
 
 export default function Home({ posts }: Props) {
+  console.log("post", posts)
   return (
     <div className="max-w-7xl mx-auto">
       <Head>
@@ -23,10 +24,15 @@ export default function Home({ posts }: Props) {
       <TopHeader />
 
       <div>
-        {posts.map((post) => {
-          <Link href="/" >
-            <img src={imgUrl(post.mainImage).url()!} />
-          </Link>
+        {posts.map((value)=>{
+          return (<div>
+            <div>
+              <img src={imgUrl(value.mainImage).url()!}> 
+              </img>
+            {value.title}
+            </div>
+
+          </div>);
         })}
       </div>
     </div>
