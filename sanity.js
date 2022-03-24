@@ -1,9 +1,5 @@
-import {
-  createImageBuilder,
-  createCurrentUserHook,
-  createClient,
-} from "next-sanity";
-
+import { createCurrentUserHook, createClient } from "next-sanity";
+import { useNextSanityImage } from "next-sanity-image";
 export const config = {
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
@@ -14,4 +10,7 @@ export const config = {
 
 export const sanityClient = createClient(config);
 
-export const imgUrl = (source) => createImageBuilder(config).image(source);
+export const imgUrl = (source) =>  useNextSanityImage(
+  config,
+  source
+);;

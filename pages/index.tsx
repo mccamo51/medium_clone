@@ -5,13 +5,14 @@ import Header from "../components/Header";
 import TopHeader from "../components/TopHeader";
 import { imgUrl, sanityClient } from "../sanity";
 import { Post } from "../typings";
+import Img from "next/image";
 
 interface Props {
   posts: [Post];
 }
 
 export default function Home({ posts }: Props) {
-  console.log("post", posts)
+  console.log("post", posts);
   return (
     <div className="max-w-7xl mx-auto">
       <Head>
@@ -23,16 +24,18 @@ export default function Home({ posts }: Props) {
       <Header />
       <TopHeader />
 
-      <div>
-        {posts.map((value)=>{
-          return (<div>
+      <div className="flex">
+        {posts.map((value) => {
+          return (
             <div>
-              <img src={imgUrl(value.mainImage).url()!}> 
-              </img>
-            {value.title}
+              <div>
+                <Img {...imgUrl(value.mainImage)} width={200} height={260} />
+              </div>
+              {value.title + ' by ' + value.author}
+              <p>{
+                value.body[0].constructor.length}</p>
             </div>
-
-          </div>);
+          );
         })}
       </div>
     </div>
